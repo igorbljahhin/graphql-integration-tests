@@ -1,15 +1,15 @@
-package ee.bookify.backend.dto;
+package com.example.graphqlintegrationtests.dto;
 
-import ee.bookify.backend.domain.RegistrationMethodEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.graphqlintegrationtests.domain.RegistrationMethodEnum;
 
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class RegistrationMethodDTO {
     private RegistrationMethodEnum method;
+
+    public RegistrationMethodEnum getMethod() {
+        return method;
+    }
+
+    public void setMethod(RegistrationMethodEnum method) {
+        this.method = method;
+    }
 }

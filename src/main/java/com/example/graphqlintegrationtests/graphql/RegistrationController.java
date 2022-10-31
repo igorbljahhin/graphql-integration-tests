@@ -1,17 +1,17 @@
-package ee.bookify.backend.graphql;
+package com.example.graphqlintegrationtests.graphql;
 
-import ee.bookify.backend.dto.RegistrationMethodDTO;
-import ee.bookify.backend.service.RegistrationService;
-import lombok.RequiredArgsConstructor;
+import com.example.graphqlintegrationtests.dto.RegistrationMethodDTO;
+import com.example.graphqlintegrationtests.service.RegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.Collection;
 
 @Controller
-@RequiredArgsConstructor
 public class RegistrationController {
-    private final RegistrationService registrationService;
+    @Autowired
+    private RegistrationService registrationService;
 
     @QueryMapping()
     public Collection<RegistrationMethodDTO> registrationMethods() {

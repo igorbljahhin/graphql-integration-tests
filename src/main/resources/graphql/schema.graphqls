@@ -1,147 +1,18 @@
-scalar DateTime
-
 schema {
     query: Query
-    mutation: Mutation
 }
 
 type Query {
     registrationMethods: [RegistrationMethod]
 }
 
-type Mutation {
-    registerUsingMagicLink(input: MagicLinkInput!): MagicLink
-    verifyMagicLink(input: VerifyMagicLinkInput!): VerifyMagicLink
-}
-
-input MagicLinkInput {
-    emailAddress: String!
-}
-
-input VerifyMagicLinkInput {
-    token: String!
-}
-
-type VerifyMagicLink {
-    emailAddress: String
-    valid: Boolean!
-}
-
-enum RegistrationMethodEnum{
+enum RegistrationMethodEnum {
     MAGIC_LINK,
-    USERNAME,
-    EST_ID_CARD,
-    EST_MOBILE_ID,
-    EST_SMART_ID,
+    USERNAME
     GOOGLE,
     FACEBOOK
 }
 
 type RegistrationMethod {
     method: RegistrationMethodEnum!
-}
-
-type MagicLink {
-    emailAddress: String!
-    returnUrl: String!
-}
-
-type Account{
-    id: ID!
-    registrationMethod: RegistrationMethodEnum
-    principal: String!
-    credentials: String!
-    createdAt: DateTime!
-}
-
-type Person{
-    id: ID!
-    name: String!
-    emailAddress: EmailAddress
-    phone: Phone
-}
-
-type EmailAddress{
-    emailAddress: String!
-    verified: Boolean!
-    verifiedAt: DateTime
-}
-
-type Phone{
-    intlCode: Int!
-    phoneNumber: Int!
-    verified: Boolean!
-    verifiedAt: DateTime
-}
-
-type Company{
-    id: ID!
-    name: String!
-    registrationNumber: String
-    address: Address
-    emailAddress: EmailAddress
-    phone: Phone
-    members: [CompanyMember]
-    specializations: [Specialization]
-    branches: [CompanyBranch]
-}
-
-type CompanyMember{
-    id: ID!
-    person: Person!
-    company: Company!
-    emailAddress: EmailAddress
-    phone: Phone
-    manager: Boolean
-    specializations: [Specialization]
-}
-
-type CompanyMemberSchedule{
-    companyMember: CompanyMember!
-    companyBranch: CompanyBranch!
-    since: DateTime!
-    until: DateTime
-    weekdays: [String]
-    timeSlots: [TimeSlot]
-    reservations: [Reservation]
-}
-
-type Specialization{
-    code: String!
-    title: String!
-    defaultDuration: Duration!
-}
-
-type Duration{
-    duration: Int!
-    unit: String!
-}
-
-type CompanyBranch{
-    address: Address!
-}
-
-type Address{
-    id: ID!
-    street: String!
-    building: String
-    zip: String
-    city: String!
-    country: String!
-}
-
-type TimeSlot{
-    companyMemberSchedule: CompanyMemberSchedule!
-    timestamp: DateTime!
-    worker: Person!
-    company: Company!
-    companyBranch: CompanyBranch!
-}
-
-type Reservation {
-    companyMemberSchedule: CompanyMemberSchedule!
-    timestamp: DateTime!
-    duration: Int
-    customer: Person
-    company: Company!
 }
